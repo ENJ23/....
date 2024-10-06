@@ -11,23 +11,13 @@ public class Libro {
 	
 	
 	public void mostrarDatos() {
-		if (estado = false) {
+		if (estado == false) {
 			System.out.println("Libro no Disponible...");
 		}else {
-			System.out.println("Libro [id=\" + id + \", titulo=\" + titulo + \", autor=\" + autor + \", isbn=\" + isbn + \", estado=\" + estado\r\n"
-					+ "				+ \"]");
+			System.out.println("Libro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", isbn=" + isbn + ", estado=" + estado + "]");
 		}
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "Libro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", isbn=" + isbn + ", estado=" + estado
-				+ "]";
-	}
-
-
-
 	public Libro(int id, String titulo, String autor, String isbn, boolean estado) {
 		super();
 		this.id = id;

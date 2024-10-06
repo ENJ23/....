@@ -17,7 +17,7 @@ public abstract class Usuario {
 		this.email = email;
 	}
 
-	public void mostrarDatos() {};
+	public abstract void mostrarDatos();
 	
 	public int getId() {
 		return id;

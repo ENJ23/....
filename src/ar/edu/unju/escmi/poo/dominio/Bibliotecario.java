@@ -18,7 +18,12 @@ public class Bibliotecario extends Usuario {
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
-	
-	
+
+	@Override
+	public void mostrarDatos() {
+		// TODO Auto-generated method stub
+		System.out.println("Bibliotecario [legajo=" + legajo + ", id=" + id + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", email=" + email + "]");
+	}	
 	
 }

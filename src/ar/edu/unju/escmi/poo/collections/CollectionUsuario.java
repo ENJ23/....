@@ -23,51 +23,41 @@ public class CollectionUsuario {
 		usuarios.add(new Alumno(3, "Carlos", "López", "carlos.lopez@example.com","2DO Informatica", "2000"));
 	}
 	
-	public static void registrarUsuario(String tipo) {
-
-		idIncremental++;
-		System.out.println("Ingrese el nombre: ");
-		String nombreUser = scanner.nextLine();
-		System.out.println("Ingrse el apellido: ");
-		String apellidoUser = scanner.nextLine();
-		System.out.println("Ingrese el email: ");
-		String emailUser = scanner.nextLine();
-			if (tipo.toLowerCase().equals("bibliotecario")) {
-				System.out.println("Ingrese el legajo: ");
-				String legajoBib = scanner.nextLine();
-				Bibliotecario nuevoBibliotecario = new Bibliotecario(idIncremental,nombreUser,apellidoUser,emailUser,legajoBib);
-				usuarios.add(nuevoBibliotecario);
-				System.out.println("Bibliotecario añadido con éxito");
-			}else if (tipo.toLowerCase().equals("alumno")){
-				System.out.println("Ingrese el curso: ");
-				String cursoAlumn = scanner.nextLine();
-				System.out.println("Ingrse el Nº de libreta universitaria");
-				String luAlumn = scanner.nextLine();
-				Alumno nuevoAlumno = new Alumno(idIncremental,nombreUser,apellidoUser,emailUser,cursoAlumn,luAlumn);
-				usuarios.add(nuevoAlumno);
-				System.out.println("Alumno añadido con éxito");
-			}else {
-				System.out.println("Algo falló en la ejecucion. Intentelo de nuevo");
-			}
-		
+	public static int aumentarIdIncremental() {
+		return idIncremental++;
 	}
 	
-	public static Alumno buscarUsuario(String lu) throws UsuarioNoRegistradoException {
+	public static void registrarUsuario(Usuario usuarioNuevo) {
+
+	try {
+		usuarios.add(usuarioNuevo);
+		System.out.println("Usuario añadido con éxito");
+	}catch(Exception e) {
+		System.out.println("Algo salió mal...");
+	}
+		
+}
+	
+	public static Alumno buscarUsuario(String lu, Class<Alumno> tipo) throws UsuarioNoRegistradoException {
 		for (Usuario alumno : usuarios) {
+			if (tipo.isInstance(alumno)) {
 			Alumno alumnoBuscado = (Alumno) alumno;
-			if (alumnoBuscado.getLu().equalsIgnoreCase(lu)) {
+				if (alumnoBuscado.getLu().equalsIgnoreCase(lu)) {
 				return alumnoBuscado;
+				}
 			}
 				
 		}			
 		throw new UsuarioNoRegistradoException("El usuario no está registrado");
 	}
 	
-	public static Bibliotecario buscarBibliotecario(String legajo) throws UsuarioNoRegistradoException {
+	public static Bibliotecario buscarBibliotecario(String legajo, Class<Bibliotecario> tipo) throws UsuarioNoRegistradoException {
 		for (Usuario bib : usuarios) {
+			if (tipo.isInstance(bib)) {
 			Bibliotecario bibBuscado = (Bibliotecario) bib;
 			if (bibBuscado.getLegajo().equals(legajo)) {
 				return bibBuscado;
+			}
 			}
 				
 		}			

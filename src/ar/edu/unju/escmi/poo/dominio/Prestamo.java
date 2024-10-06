@@ -20,6 +20,17 @@ public class Prestamo {
 		this.usuario = usuario;
 	}
 
+	
+	public void mostrarDatos() {
+		System.out.println("Prestamo [id=" + id + ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion
+				+ ", libro=" + libro + ", usuario=" + usuario + "]");
+	}
+	
+	public LocalDate registrarDevolucion() {
+		libro.setEstado(true);
+		return LocalDate.now();
+	}
+
 
 	public int getId() {
 		return id;

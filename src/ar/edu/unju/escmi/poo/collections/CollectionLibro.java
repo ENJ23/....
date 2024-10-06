@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ar.edu.unju.escmi.poo.dominio.Bibliotecario;
 import ar.edu.unju.escmi.poo.dominio.Libro;
 import ar.edu.unju.escmi.poo.exceptions.LibroNoDisponibleException;
 import ar.edu.unju.escmi.poo.exceptions.LibroNoEncontradoException;
@@ -25,38 +24,24 @@ public class CollectionLibro {
 
 	}
 	
-	public static void registrarLibro() throws UsuarioNoRegistradoException {
+	public static int aumentarIdIncremental () {
+		return idIncremental++;
+	}
+	
+	public static void registrarLibro(Libro nuevoLibro) throws UsuarioNoRegistradoException {
 
-		System.out.println("Ingresa tu legajo, para verificar que eres un bibliotecario: ");
-		String legajoBib = scanner.nextLine();
-		Bibliotecario bibBuscado = CollectionUsuario.buscarBibliotecario(legajoBib);
-		if (bibBuscado != null) {
-			System.out.println("Legajo Confirmado. Tiene permiso para registrar el libro");
-			idIncremental++;
-			System.out.println("Ingrese el titulo: ");
-			String tituloLibro = scanner.nextLine();
-			System.out.println("Ingrse el nombre del autor: ");
-			String autorLibro = scanner.nextLine();
-			System.out.println("Ingrese el isbn: ");
-			String isbnLibro = scanner.nextLine();
-			boolean estadoLibro = true;
-			
-			Libro nuevoLibro = new Libro(idIncremental,tituloLibro,autorLibro,isbnLibro,estadoLibro);
 			libros.add(nuevoLibro);
+			System.out.println("El Libro ha sido añadido exitosamente!");
 		}
 		
-	}
+	
 	
 	public static void listarLibros() {
 		
 		System.out.println("Claro, aquí tienes la lista de libros");
 		System.out.println("Para tomar prestados los 'No disponibles' debes esperar a que sean devueltos. Ten cuidado con eso.");
 		for (Libro libro : libros) {
-			if (libro.isEstado()) {
-				System.out.println(libro);
-			}else {
-				System.out.println(libro + "Libro No Disponible");
-			}
+			libro.mostrarDatos();
 		}
 	}
 	

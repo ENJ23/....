@@ -31,6 +31,16 @@ public class Alumno extends Usuario {
 	public void setLu(String lu) {
 		this.lu = lu;
 	}
+
+
+	@Override
+	public void mostrarDatos() {
+		// TODO Auto-generated method stub
+		System.out.println("Alumno [curso=" + curso + ", lu=" + lu + ", id=" + id + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", email=" + email + "]");
+		
+	}
+
 	
 	
 }
